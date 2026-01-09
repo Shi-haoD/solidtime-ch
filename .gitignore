@@ -44,4 +44,3 @@ yarn-error.log
 /config/composer
 .env.ci
 .env.example
-.env.ci
