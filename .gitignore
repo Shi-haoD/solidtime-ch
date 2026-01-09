@@ -42,3 +42,6 @@ yarn-error.log
 /data
 /config/caddy
 /config/composer
+.env.ci
+.env.example
+.env.ci
