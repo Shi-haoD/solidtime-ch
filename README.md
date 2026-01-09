@@ -1,50 +1,237 @@
-# solidtime - The modern Open-Source Time Tracker
+# solidtime-ch —— SolidTime 中文学习 & 二开版本
 
-[![GitHub License](https://img.shields.io/github/license/solidtime-io/solidtime?style=flat-square)](https://github.com/solidtime-io/solidtime/blob/main/LICENSE.md)
-[![Codecov](https://img.shields.io/codecov/c/github/solidtime-io/solidtime?style=flat-square&logo=codecov)](https://codecov.io/gh/solidtime-io/solidtime)
-![GitHub Actions Unit Tests Status](https://img.shields.io/github/actions/workflow/status/solidtime-io/solidtime/phpunit.yml?style=flat-square)
-![PHPStan badge](https://img.shields.io/badge/PHPStan-Level_7-blue?style=flat-square&color=blue)
+> 🧠 **本仓库用于个人全栈学习与二次开发（非官方）**  
+> 基于开源项目 [solidtime](https://github.com/solidtime-io/solidtime)，  
+> 主要目的：**学习 Laravel + Vue + PostgreSQL 的完整业务项目架构**
 
-![Screenshot of the solidtime application with header: solidtime - The modern Open-Source Time Tracker](docs/solidtime-banner.png "solidtime Banner")
+---
 
-solidtime is a modern open-source time tracking application for Freelancers and Agencies.
+## 📌 项目说明（必看）
 
-## Features
+-   本项目是 **solidtime 的个人私有二开版本**
+-   用于：
+    -   学习 **后端（Laravel / PHP）**
+    -   学习 **前端（Vue / Vite）**
+    -   学习 **数据库设计（PostgreSQL）**
+    -   理解 **真实 SaaS 项目的业务模型**
+-   ❌ 非官方版本
+-   ❌ 不用于商业用途
+-   ✅ 严格遵循原项目 **AGPL v3 开源协议**
 
- - Time tracking: Track your time with a modern and easy-to-use interface
- - Projects: Create and manage projects and assign project members
- - Tasks: Create and manage tasks and assign tasks to projects
- - Clients: Create and manage clients and assign clients to projects
- - Billable rates: Set billable rates for projects, project members, organization members and organizations 
- - Multiple organizations: Create and manage multiple organizations with one account
- - Roles and permissions: Create and manage organizations
- - Import: Import your time tracking data from other time tracking applications (Supported: Toggl, Clockify, Timeentry CSV)
+---
 
-## Self Hosting
+## 🧭 solidtime 是什么？
 
-If you are looking into self-hosting solidtime, you can find the guides [here](https://docs.solidtime.io/self-hosting/intro)
+**solidtime** 是一款现代化的 **开源时间追踪（Time Tracking）系统**，  
+主要面向：
 
-We also have an examples repository [here](https://github.com/solidtime-io/self-hosting-examples)
+-   自由职业者（Freelancers）
+-   工作室 / 代理机构（Agencies）
+-   多成员协作团队
 
-If you do not want to self-host solidtime or try it out you can sign up for [solidtime cloud](https://www.solidtime.io/)
+它解决的核心问题是：
 
-## Issues & Feature Requests
+> **谁，在什么项目上，用了多少时间，是否可计费**
 
-If you find any **bugs in solidtime**, please feel free to [**open an issue**](https://github.com/solidtime-io/solidtime/issues/new) in this repository, with instructions on how to reproduce the bug. 
-If you have a **feature request**, please [**create a discussion**](https://github.com/solidtime-io/solidtime/discussions/new?category=feature-requests) in this repository.
+---
 
-## Contributing
+## ✨ 原项目功能概览（Features）
 
-Please open an issue or start a discussion and wait for approval before submitting a pull request. This does not apply to tiny fixes or changes however, please keep in mind that we might not merge PRs for various reasons. 
+-   ⏱ **时间追踪**
+    -   记录工作时间
+    -   支持开始 / 暂停 / 结束
+-   📁 **项目管理**
+    -   创建项目
+    -   为项目分配成员
+-   ✅ **任务管理**
+    -   项目下创建任务
+    -   时间记录可绑定任务
+-   👤 **客户管理**
+    -   项目可绑定客户
+-   💰 **计费费率**
+    -   按：
+        -   项目
+        -   项目成员
+        -   组织成员
+        -   组织
+-   🏢 **多组织支持**
+    -   一个账号可管理多个组织
+-   🔐 **角色 & 权限系统**
+-   📥 **数据导入**
+    -   Toggl
+    -   Clockify
+    -   CSV（Timeentry）
 
-Please read the [CONTRIBUTING.md](./CONTRIBUTING.md) before sumbitting a Pull Request.
+---
 
-We do accept contributions in the [documentation repository](https://github.com/solidtime-io/docs) f.e. to add new self-hosting guides.
+## 🧠 solidtime 的核心业务模型（重点）
 
-## Security
+### 1️⃣ 组织（Organization）
 
-Looking to report a vulnerability? Please refer our [SECURITY.md](./SECURITY.md) file.
+> **最大业务单位**
 
-## License
+-   一个用户可以属于多个组织
+-   每个组织： - 有自己的成员 - 有自己的项目 - 有自己的客户
+    用户
+    └── 组织 A
+    └── 组织 B
 
-This project is open-source and available under the GNU Affero General Public License v3.0 (AGPL v3). Please see the [license file](LICENSE.md) for more information.
+---
+
+### 2️⃣ 成员 & 角色（Members & Roles）
+
+-   用户加入组织后 → 成为 **组织成员**
+-   成员有不同角色：
+    -   管理员
+    -   普通成员
+-   权限控制通过：
+    -   Laravel Policy
+    -   Middleware
+
+---
+
+### 3️⃣ 客户（Client）
+
+-   客户属于某个组织
+-   客户可以绑定多个项目
+-   用于：
+    -   统计工时
+    -   后续对账 / 计费
+
+---
+
+### 4️⃣ 项目（Project）
+
+-   项目属于组织
+-   项目可以：
+    -   绑定客户
+    -   绑定多个成员
+-   项目有：
+    -   默认计费费率
+    -   自定义规则
+
+---
+
+### 5️⃣ 任务（Task）
+
+-   任务属于项目
+-   时间记录可以：
+    -   直接挂项目
+    -   或挂到某个任务
+
+---
+
+### 6️⃣ 时间记录（Time Entry）⭐ 核心
+
+这是整个系统 **最核心的数据表**：
+
+一条时间记录包含：
+
+| 字段       | 含义         |
+| ---------- | ------------ |
+| user_id    | 谁干的       |
+| project_id | 干在哪个项目 |
+| task_id    | 干哪个任务   |
+| start_time | 什么时候开始 |
+| end_time   | 什么时候结束 |
+| duration   | 用了多久     |
+| billable   | 是否可计费   |
+
+---
+
+### 7️⃣ 计费逻辑（Billing）
+
+计费并不是写死的，而是 **多层级覆盖**：
+项目成员费率
+↓
+项目费率
+↓
+组织成员费率
+↓
+组织默认费率
+
+👉 这是一套 **非常典型的 SaaS 计费设计**
+
+---
+
+## 🧱 技术架构说明（你现在学的是什么）
+
+### 后端
+
+-   **语言**：PHP 8.x
+-   **框架**：Laravel
+-   **认证**：Laravel Passport（OAuth2 / Token）
+-   **ORM**：Eloquent
+-   **数据库**：PostgreSQL
+
+### 前端
+
+-   **框架**：Vue
+-   **构建工具**：Vite
+-   **状态管理 / 请求**：基于现代前端方案
+-   **UI**：组件化
+
+---
+
+## 🔄 一次完整请求是怎么跑的？
+
+浏览器
+↓
+Vue 页面
+↓
+API 请求
+↓
+Laravel routes/api.php
+↓
+Controller
+↓
+Service（业务逻辑）
+↓
+Model（数据库）
+↓
+返回 JSON
+↓
+Vue 渲染
+
+👉 **你学全栈，学的就是这条链路**
+
+---
+
+## 🛠 本仓库的学习目标
+
+-   ✅ 跑通完整前后端
+-   ✅ 看懂一个真实项目的结构
+-   ✅ 能改一个小功能
+-   ✅ 理解 SaaS 项目常见设计
+-   ❌ 不追求短期上线
+-   ❌ 不追求商业化
+
+---
+
+## 📚 学习建议（给未来的自己）
+
+-   不要一口气看完所有代码
+-   永远从：
+    -   routes → controller → model
+-   前端：
+    -   找一个页面
+    -   看它调了哪个 API
+-   每次只改 **一小点**
+
+---
+
+## ⚖️ License
+
+本项目基于原始 solidtime 项目，  
+遵循 **GNU Affero General Public License v3.0（AGPL v3）**。
+
+原项目地址：  
+https://github.com/solidtime-io/solidtime
+
+---
+
+## 🚧 声明
+
+> 本仓库为个人学习用途  
+> 不代表官方立场  
+> 不提供生产环境保证
