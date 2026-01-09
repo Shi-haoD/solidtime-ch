@@ -27,7 +27,6 @@ use Illuminate\Support\Facades\App;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Nwidart\Modules\Facades\Module;
 use pxlrbt\FilamentEnvironmentIndicator\EnvironmentIndicatorPlugin;
-
 class AdminPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel

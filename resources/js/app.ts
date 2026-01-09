@@ -8,9 +8,10 @@ import { createPinia } from 'pinia';
 import type { User } from '@/types/models';
 import { VueQueryPlugin } from '@tanstack/vue-query';
 import { type DefineComponent } from 'vue';
-
+import i18n from '../../lang/i18n/index.js'; // 引入i18n实例
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 const pinia = createPinia();
+console.log('APP ENTRY LOADED');
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
@@ -61,7 +62,7 @@ createInertiaApp({
             }>();
             return page.props.auth.user.timezone;
         };
-
+        app.use(i18n);
         app.use(plugin).use(pinia).use(ZiggyVue).use(VueQueryPlugin).mount(el);
     },
 

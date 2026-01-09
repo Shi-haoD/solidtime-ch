@@ -30,19 +30,20 @@ async function getConfig() {
                     },
                 },
             }),
-            checker({
-                // e.g. use TypeScript check
-                typescript: true,
-                vueTsc: true,
-                lintCommand: 'eslint "./**/*.{ts,vue}"',
-            }),
+            // checker({
+            //     // e.g. use TypeScript check
+            //     typescript: true,
+            //     vueTsc: true,
+            //     lintCommand: 'eslint "./**/*.{ts,vue}"',
+            // }),
             ...additionalPlugins,
         ],
         server: {
-            host: true,
+            host: '127.0.0.1',
+            port: 5173,
             hmr: {
-                host: process.env.VITE_HOST_NAME,
-                clientPort: 80,
+                host: '127.0.0.1',
+                port: 5173,
             },
         },
     });

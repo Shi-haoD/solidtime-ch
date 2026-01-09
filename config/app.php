@@ -99,7 +99,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'zh_CN',
 
     /*
     |--------------------------------------------------------------------------
@@ -112,7 +112,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'en',
+    'fallback_locale' => 'zh_CN',
 
     /*
     |--------------------------------------------------------------------------
@@ -125,7 +125,7 @@ return [
     |
     */
 
-    'faker_locale' => 'en_US',
+    'faker_locale' => 'zh_CN',
 
     'pagination_per_page_default' => (int) env('PAGINATION_PER_PAGE_DEFAULT', 15),
 

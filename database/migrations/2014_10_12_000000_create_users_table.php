@@ -35,7 +35,7 @@ return new class extends Migration
             ]);
             $table->timestamps();
 
-            $table->uniqueIndex('email')
+            $table->unique('email')
                 ->where('is_placeholder = false');
         });
     }

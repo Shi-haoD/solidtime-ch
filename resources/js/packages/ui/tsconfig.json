@@ -15,17 +15,10 @@
         "rootDir": "../../",
         "declaration": true,
         "paths": {
-            "@/*": ["../../*"],
+            "@/*": ["../../*"]
         }
     },
-    "include": [
-        "src/**/*.ts"
-    ],
+    "include": ["src/**/*.ts"],
 
-    "exclude": [
-        "./dist",
-        "./node_modules",
-        "./__tests__",
-        "./coverage"
-    ],
+    "exclude": ["./dist", "./node_modules", "./__tests__", "./coverage"]
 }

@@ -8,7 +8,7 @@
         "lint:fix": "eslint --fix resources/js",
         "type-check": "vue-tsc --noEmit",
         "test:e2e": "rm -rf test-results/.auth && npx playwright test",
-        "zod:generate": "npx openapi-zod-client http://localhost:80/docs/api.json --output resources/js/packages/api/src/openapi.json.client.ts --base-url /api",
+        "zod:generate": "npx openapi-zod-client http://127.0.0.1:8000/docs/api.json --output resources/js/packages/api/src/openapi.json.client.ts --base-url /api",
         "format": "prettier --write './**/*.{js,jsx,cjs,mjs,ts,tsx,cts,mts,vue}'",
         "format:check": "prettier --check './**/*.{js,jsx,cjs,mjs,ts,tsx,cts,mts,vue}'"
     },
@@ -39,6 +39,7 @@
     },
     "dependencies": {
         "@floating-ui/core": "^1.6.0",
+        "@floating-ui/dom": "^1.7.4",
         "@floating-ui/vue": "^1.0.6",
         "@fullcalendar/core": "^6.1.18",
         "@fullcalendar/daygrid": "^6.1.18",
@@ -46,6 +47,7 @@
         "@fullcalendar/timegrid": "^6.1.18",
         "@fullcalendar/vue3": "^6.1.18",
         "@heroicons/vue": "^2.1.1",
+        "@internationalized/date": "^3.10.1",
         "@rushstack/eslint-patch": "^1.10.5",
         "@tailwindcss/container-queries": "^0.1.1",
         "@tanstack/vue-form": "^1.3.1",
@@ -56,11 +58,12 @@
         "@vue/eslint-config-typescript": "^14.3.0",
         "@vueuse/core": "^12.8.2",
         "@vueuse/integrations": "^12.5.0",
+        "@zodios/core": "^10.9.6",
         "chroma-js": "3.1.2",
         "class-variance-authority": "^0.7.1",
         "clsx": "^2.1.1",
         "dayjs": "^1.11.11",
-        "echarts": "^5.5.0",
+        "echarts": "^5.4.3",
         "focus-trap": "^7.6.0",
         "lucide-vue-next": "^0.487.0",
         "parse-duration": "^2.0.1",
@@ -69,7 +72,10 @@
         "reka-ui": "^2.2.0",
         "tailwind-merge": "^2.6.0",
         "tailwindcss-animate": "^1.0.7",
-        "vue-echarts": "^7.0.3"
+        "vue-echarts": "^7.0.3",
+        "vue-i18n": "9",
+        "zod": "^4.3.5",
+        "zrender": "5.4.4"
     },
     "overrides": {
         "vite-plugin-checker": {
