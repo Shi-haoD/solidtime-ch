@@ -54,18 +54,18 @@ const emit = defineEmits(['submit']);
 </script>
 
 <template>
-    <div class="sm:flex items-center space-y-2 sm:space-y-0 sm:space-x-4 pt-6">
+    <div class="items-center pt-6 space-y-2 sm:flex sm:space-y-0 sm:space-x-4">
         <div>
-            <div class="flex items-center space-x-1 mb-2">
+            <div class="flex items-center mb-2 space-x-1">
                 <BillableIcon class="text-text-quaternary h-4 ml-1 mr-0.5"></BillableIcon>
-                <InputLabel for="billable" value="Billable Default" />
+                <InputLabel for="billable" :value="$t('dashboard.Billable Default')" />
             </div>
             <ProjectBillableSelect
                 v-model="billableRateSelect"
                 class="mt-2"></ProjectBillableSelect>
         </div>
         <div v-if="billableRateSelect === 'custom-rate'">
-            <InputLabel for="billableRate" value="Billable Rate" class="mb-2" />
+            <InputLabel for="billableRate" :value="$t('dashboard.Billable Rate')" class="mb-2" />
             <BillableRateInput
                 v-model="billableRate"
                 :currency="currency"
@@ -73,9 +73,9 @@ const emit = defineEmits(['submit']);
                 @keydown.enter="emit('submit')" />
         </div>
     </div>
-    <div class="flex items-center text-text-secondary text-xs pt-2 pl-1">
+    <div class="flex items-center pt-2 pl-1 text-xs text-text-secondary">
         <span>
-            <span class="font-semibold"> Info: </span>
+            <span class="font-semibold">{{ $t('dashboard.Info') }}: </span>
             {{ billableOptionInfoText }}
         </span>
     </div>

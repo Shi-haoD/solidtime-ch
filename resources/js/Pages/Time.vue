@@ -102,7 +102,7 @@ function deleteSelected() {
 
 <template>
     <AppLayout title="Dashboard" data-testid="time_view">
-        <MainContainer class="pt-5 lg:pt-8 pb-4 lg:pb-6">
+        <MainContainer class="pt-5 pb-4 lg:pt-8 lg:pb-6">
             <TimeTracker></TimeTracker>
         </MainContainer>
         <TimeEntryMassActionRow
@@ -147,22 +147,22 @@ function deleteSelected() {
             :currency="getOrganizationCurrencyString()"
             :time-entries="timeEntries"
             :tags="tags"></TimeEntryGroupedTable>
-        <div v-if="timeEntries.length === 0" class="text-center pt-12">
-            <ClockIcon class="w-8 text-icon-default inline pb-2"></ClockIcon>
-            <h3 class="text-text-primary font-semibold">No time entries found</h3>
-            <p class="pb-5">Create your first time entry now!</p>
+        <div v-if="timeEntries.length === 0" class="pt-12 text-center">
+            <ClockIcon class="inline w-8 pb-2 text-icon-default"></ClockIcon>
+            <h3 class="font-semibold text-text-primary">{{ $t('Time.No time entries found') }}</h3>
+            <p class="pb-5">{{ $t('Time.Create your first time entry now!') }}</p>
         </div>
         <div ref="loadMoreContainer">
             <div
                 v-if="loading && !allTimeEntriesLoaded"
-                class="flex justify-center items-center py-5 text-text-primary font-medium">
+                class="flex items-center justify-center py-5 font-medium text-text-primary">
                 <LoadingSpinner></LoadingSpinner>
-                <span> Loading more time entries... </span>
+                <span>{{ $t('Time.Loading more time entries') }}</span>
             </div>
             <div
                 v-else-if="allTimeEntriesLoaded"
-                class="flex justify-center items-center py-5 text-text-secondary font-medium">
-                All time entries are loaded!
+                class="flex items-center justify-center py-5 font-medium text-text-secondary">
+                {{ $t('Time.All time entries are loaded!') }}
             </div>
         </div>
     </AppLayout>

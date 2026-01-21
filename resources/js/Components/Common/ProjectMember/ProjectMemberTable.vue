@@ -29,11 +29,13 @@ const createProjectMember = ref(false);
                 style="grid-template-columns: 1fr 150px 150px 80px">
                 <ProjectMemberTableHeading></ProjectMemberTableHeading>
                 <div v-if="projectMembers.length === 0" class="col-span-5 py-24 text-center">
-                    <UserGroupIcon class="w-8 text-icon-default inline pb-2"></UserGroupIcon>
-                    <h3 class="text-text-primary font-semibold">No project members</h3>
-                    <p class="pb-5">Add the first project member!</p>
+                    <UserGroupIcon class="inline w-8 pb-2 text-icon-default"></UserGroupIcon>
+                    <h3 class="font-semibold text-text-primary">
+                        {{ $t('Time.No project members') }}
+                    </h3>
+                    <p class="pb-5">{{ $t('Time.Add the first project member!') }}</p>
                     <SecondaryButton :icon="PlusIcon" @click="createProjectMember = true"
-                        >Add a new Project Member
+                        >{{ $t('Time.Add a new Project Member') }}
                     </SecondaryButton>
                 </div>
                 <template v-for="projectMember in projectMembers" :key="projectMember.id">

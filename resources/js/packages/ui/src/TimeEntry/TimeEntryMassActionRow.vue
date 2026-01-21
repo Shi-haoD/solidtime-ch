@@ -75,24 +75,24 @@ const showMassUpdateModal = ref(false);
             v-if="selectedTimeEntries.length > 0"
             for="selectAll"
             class="select-none text-text-secondary">
-            {{ selectedTimeEntries.length }} selected
+            {{ selectedTimeEntries.length }} {{ $t('Time.selected') }}
         </InputLabel>
-        <InputLabel v-else for="selectAll" class="text-text-secondary select-none"
-            >Select All</InputLabel
-        >
+        <InputLabel v-else for="selectAll" class="select-none text-text-secondary">{{
+            $t('Time.Select All')
+        }}</InputLabel>
         <button
             v-if="selectedTimeEntries.length"
-            class="text-text-tertiary flex space-x-1 items-center hover:text-text-secondary transition focus-visible:ring-2 outline-0 focus-visible:text-text-primary focus-visible:ring-ring rounded h-full px-2"
+            class="flex items-center h-full px-2 space-x-1 transition rounded text-text-tertiary hover:text-text-secondary focus-visible:ring-2 outline-0 focus-visible:text-text-primary focus-visible:ring-ring"
             @click="showMassUpdateModal = true">
             <PencilSquareIcon class="w-4"></PencilSquareIcon>
-            <span> Edit </span>
+            <span>{{ $t('Time.Edit') }}</span>
         </button>
         <button
             v-if="selectedTimeEntries.length"
-            class="text-red-400 h-full px-2 space-x-1 items-center flex hover:text-red-500 transition focus-visible:ring-2 outline-0 focus-visible:text-red-500 focus-visible:ring-ring rounded"
+            class="flex items-center h-full px-2 space-x-1 text-red-400 transition rounded hover:text-red-500 focus-visible:ring-2 outline-0 focus-visible:text-red-500 focus-visible:ring-ring"
             @click="deleteSelected">
             <TrashIcon class="w-3.5"></TrashIcon>
-            <span> Delete </span>
+            <span>{{ $t('Time.Delete') }}</span>
         </button>
     </MainContainer>
 </template>

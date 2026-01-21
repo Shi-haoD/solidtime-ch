@@ -208,11 +208,11 @@ useSelectEvents(
     <div class="flex items-center relative @container" data-testid="dashboard_timer">
         <div
             class="flex flex-col @2xl:flex-row w-full justify-between rounded-lg bg-secondary border-card-border border transition shadow-card">
-            <div class="flex flex-1 items-center pr-6 relative">
+            <div class="relative flex items-center flex-1 pr-6">
                 <input
                     ref="currentTimeEntryDescriptionInput"
                     v-model="tempDescription"
-                    placeholder="What are you working on?"
+                    :placeholder="$t('dashboard.What are you working on')"
                     data-testid="time_entry_description"
                     class="w-full rounded-l-lg py-4 sm:py-2.5 px-3.5 border-b border-b-card-background-separator @2xl:px-4 text-base @4xl:text-lg text-text-primary bg-transparent border-none placeholder-text-secondary font-medium focus:ring-0 transition"
                     type="text"
@@ -225,10 +225,10 @@ useSelectEvents(
                     class="z-50 w-full max-w-2xl"
                     :style="floatingStyles">
                     <div
-                        class="rounded-lg w-full fixed min-w-xl top-0 left-0 border border-card-border overflow-none shadow-dropdown bg-card-background">
+                        class="fixed top-0 left-0 w-full border rounded-lg min-w-xl border-card-border overflow-none shadow-dropdown bg-card-background">
                         <div
                             class="text-text-tertiary text-xs font-semibold border-b border-border-tertiary px-2 py-1.5">
-                            Recently Tracked Time Entries
+                            {{ $t('dashboard.Recently Tracked Time Entries') }}
                         </div>
                         <div class="text-text-secondary py-1 px-1.5">
                             <TimeTrackerRecentlyTrackedEntry
@@ -246,7 +246,7 @@ useSelectEvents(
                     </div>
                 </div>
             </div>
-            <div class="flex items-center justify-between pl-2 shrink min-w-0">
+            <div class="flex items-center justify-between min-w-0 pl-2 shrink">
                 <div class="flex items-center w-[130px] @2xl:w-auto shrink min-w-0">
                     <TimeTrackerProjectTaskDropdown
                         v-model:project="currentTimeEntry.project_id"

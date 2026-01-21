@@ -133,7 +133,10 @@ type SelectOption = { label: string; value: string };
     <DialogModal closeable :show="show" @close="show = false">
         <template #title>
             <div class="flex space-x-2">
-                <span> Update {{ timeEntries.length }} time entries </span>
+                <span
+                    >{{ $t('Time.Update') }} {{ timeEntries.length }}
+                    {{ $t('Time.time entries') }}</span
+                >
             </div>
         </template>
 
@@ -146,7 +149,7 @@ type SelectOption = { label: string; value: string };
                         ref="descriptionInput"
                         v-model="description"
                         type="text"
-                        class="mt-1 block w-full"
+                        class="block w-full mt-1"
                         @keydown.enter="submit" />
                 </div>
                 <div class="space-y-2">
@@ -160,7 +163,7 @@ type SelectOption = { label: string; value: string };
                         :currency="currency"
                         :can-create-project
                         class="mt-1"
-                        empty-placeholder="Select project..."
+                        :empty-placeholder="$t('Time.Select project')"
                         allow-reset
                         size="xlarge"
                         :enable-estimated-time
@@ -174,9 +177,10 @@ type SelectOption = { label: string; value: string };
                             <template #trigger>
                                 <Badge :disabled="removeAllTags" tag="button" size="xlarge">
                                     <span v-if="selectedTags.length > 0">
-                                        Set {{ selectedTags.length }} tags
+                                        {{ $t('Time.Set') }} {{ selectedTags.length }}
+                                        {{ $t('Time.tags') }}
                                     </span>
-                                    <span v-else> Select Tags... </span>
+                                    <span v-else>{{ $t('Time.Select Tags') }}</span>
                                 </Badge>
                             </template>
                         </TagDropdown>
@@ -209,9 +213,13 @@ type SelectOption = { label: string; value: string };
                             ]">
                             <template #trigger>
                                 <Badge tag="button" size="xlarge">
-                                    <span v-if="billable === undefined"> Set billable status </span>
-                                    <span v-else-if="billable === true"> Billable </span>
-                                    <span v-else> Non Billable </span></Badge
+                                    <span v-if="billable === undefined">{{
+                                        $t('Time.Set billable status')
+                                    }}</span>
+                                    <span v-else-if="billable === true">{{
+                                        $t('Time.Billable')
+                                    }}</span>
+                                    <span v-else>{{ $t('Time.Non Billable') }}</span></Badge
                                 >
                             </template>
                         </SelectDropdown>
@@ -220,13 +228,13 @@ type SelectOption = { label: string; value: string };
             </div>
         </template>
         <template #footer>
-            <SecondaryButton @click="show = false"> Cancel</SecondaryButton>
+            <SecondaryButton @click="show = false">{{ $t('Time.Cancel') }}</SecondaryButton>
             <PrimaryButton
                 class="ms-3"
                 :class="{ 'opacity-25': saving }"
                 :disabled="saving"
                 @click="submit">
-                Update Time Entries
+                {{ $t('Time.Update Time Entries') }}
             </PrimaryButton>
         </template>
     </DialogModal>

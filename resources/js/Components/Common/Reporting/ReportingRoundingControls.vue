@@ -152,26 +152,26 @@ const iconClass = computed(() => {
         <PopoverTrigger as-child>
             <Button variant="outline" size="sm" :class="twMerge(activeClass)">
                 <ArrowsUpDownIcon :class="iconClass" />
-                Rounding {{ enabled ? 'on' : 'off' }}
+                {{ $t('Filters.Rounding') }} {{ enabled ? 'on' : 'off' }}
             </Button>
         </PopoverTrigger>
-        <PopoverContent class="w-72 p-4">
+        <PopoverContent class="p-4 w-72">
             <div v-if="!isAllowedToPerformPremiumAction()" class="flex flex-col space-y-2">
-                <span class="font-semibold text-xs">Premium</span>
-                <span class="text-xs text-text-secondary flex-1"
-                    >Rounding is a premium feature. Upgrade to unlock this feature.</span
-                >
+                <span class="text-xs font-semibold">Premium</span>
+                <span class="flex-1 text-xs text-text-secondary">{{
+                    $t('Filters.Rounding is a premium feature. Upgrade to unlock this feature')
+                }}</span>
                 <Link href="/billing">
                     <Button size="sm" variant="input" class="items-center space-x-1">
                         <CreditCardIcon class="w-3.5 h-3.5 text-text-tertiary mr-1" />
-                        Go to Billing
+                        {{ $t('Filters.Go to Billing') }}
                     </Button>
                 </Link>
             </div>
             <div v-else class="space-y-4">
                 <div>
                     <div class="flex items-center justify-between">
-                        <InputLabel for="enable-rounding" value="Enable Rounding" />
+                        <InputLabel for="enable-rounding" :value="$t('Filters.Enable Rounding')" />
                         <Switch
                             id="enable-rounding"
                             :model-value="enabled"
@@ -179,14 +179,20 @@ const iconClass = computed(() => {
                             @update:model-value="updateEnabled" />
                     </div>
                     <div
-                        class="mb-3 pb-2 pt-1 text-xs text-muted-foreground border-b border-border-secondary text-text-tertiary">
-                        Rounding is applied to each individual time entry, not to the accumulated
-                        total.
+                        class="pt-1 pb-2 mb-3 text-xs border-b text-muted-foreground border-border-secondary text-text-tertiary">
+                        {{
+                            $t(
+                                'Filters.Rounding is applied to each individual time entry, not to the accumulated total'
+                            )
+                        }}.
                     </div>
                 </div>
 
                 <div>
-                    <InputLabel for="rounding-type" value="Rounding Type" class="mb-2" />
+                    <InputLabel
+                        for="rounding-type"
+                        :value="$t('Filters.Rounding Type')"
+                        class="mb-2" />
                     <Select
                         :model-value="type"
                         :disabled="!enabled"
@@ -199,14 +205,19 @@ const iconClass = computed(() => {
                             <SelectValue placeholder="Select rounding type" />
                         </SelectTrigger>
                         <SelectContent>
-                            <SelectItem value="up">Round Up</SelectItem>
-                            <SelectItem value="down">Round Down</SelectItem>
-                            <SelectItem value="nearest">Round Nearest</SelectItem>
+                            <SelectItem value="up">{{ $t('Filters.Round Up') }}</SelectItem>
+                            <SelectItem value="down">{{ $t('Filters.Round Down') }}</SelectItem>
+                            <SelectItem value="nearest">{{
+                                $t('Filters.Round Nearest')
+                            }}</SelectItem>
                         </SelectContent>
                     </Select>
                 </div>
                 <div>
-                    <InputLabel for="minutes-interval" value="Minutes Interval" class="mb-2" />
+                    <InputLabel
+                        for="minutes-interval"
+                        :value="$t('Filters.Minutes Interval')"
+                        class="mb-2" />
                     <Select
                         :model-value="selectedInterval"
                         :disabled="!enabled"
@@ -216,7 +227,7 @@ const iconClass = computed(() => {
                             size="small"
                             class="w-full"
                             :disabled="!enabled">
-                            <SelectValue placeholder="Select interval" />
+                            <SelectValue :placeholder="$t('Filters.Select interval')" />
                         </SelectTrigger>
                         <SelectContent>
                             <SelectItem
@@ -241,7 +252,7 @@ const iconClass = computed(() => {
                             <NumberFieldContent>
                                 <NumberFieldDecrement :disabled="!enabled" />
                                 <NumberFieldInput
-                                    placeholder="Enter custom minutes"
+                                    :placeholder="$t('Filters.Enter custom minutes')"
                                     :disabled="!enabled" />
                                 <NumberFieldIncrement :disabled="!enabled" />
                             </NumberFieldContent>

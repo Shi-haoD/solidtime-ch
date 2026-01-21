@@ -496,8 +496,8 @@ const showCreateProject = ref(false);
             tag="button"
             class="cursor-pointer hover:bg-tertiary"
             @click="showCreateProject = true">
-            <PlusIcon class="-ml-1 w-5"></PlusIcon>
-            <span>Add new project</span>
+            <PlusIcon class="w-5 -ml-1"></PlusIcon>
+            <span>{{ $t('dashboard.Add new project') }}</span>
         </Badge>
     </div>
     <Dropdown v-else v-model="open" :close-on-content-click="false" align="center">
@@ -515,20 +515,20 @@ const showCreateProject = ref(false);
                         props.class
                     )
                 ">
-                <div class="flex items-center lg:space-x-1 min-w-0">
-                    <span class="whitespace-nowrap text-xs lg:text-sm">
+                <div class="flex items-center min-w-0 lg:space-x-1">
+                    <span class="text-xs whitespace-nowrap lg:text-sm">
                         {{ selectedProjectName }}
                     </span>
                     <ChevronRightIcon
                         v-if="currentTask"
                         class="w-4 lg:w-5 text-text-secondary shrink-0"></ChevronRightIcon>
-                    <div v-if="currentTask" class="min-w-0 shrink text-xs lg:text-sm truncate">
+                    <div v-if="currentTask" class="min-w-0 text-xs truncate shrink lg:text-sm">
                         {{ currentTask.name }}
                     </div>
                 </div>
                 <button
                     v-if="project !== null && allowReset"
-                    class="absolute right-0 top-0 h-full flex items-center pr-3 text-text-quaternary hover:text-text-secondary"
+                    class="absolute top-0 right-0 flex items-center h-full pr-3 text-text-quaternary hover:text-text-secondary"
                     @click.stop="
                         project = null;
                         task = null;
@@ -544,7 +544,7 @@ const showCreateProject = ref(false);
                     :value="searchValue"
                     data-testid="client_dropdown_search"
                     class="bg-card-background border-0 placeholder-text-tertiary text-sm text-text-primary py-2.5 focus:ring-0 border-b border-card-background-separator focus:border-card-background-separator w-full"
-                    placeholder="Search for a project or task..."
+                    :placeholder="$t('Time.Search for a project or task')"
                     @input="updateSearchValue"
                     @keydown.enter.prevent="addClientIfNoneExists"
                     @keydown.esc.prevent="open = false"
@@ -559,7 +559,7 @@ const showCreateProject = ref(false);
                     <template v-for="client in filteredResults" :key="client.id">
                         <div
                             v-if="client.id !== 'no_project_no_client'"
-                            class="w-full pb-1 pt-2 px-2 text-text-tertiary text-xs font-semibold flex space-x-1 items-center">
+                            class="flex items-center w-full px-2 pt-2 pb-1 space-x-1 text-xs font-semibold text-text-tertiary">
                             <span>
                                 {{ client.name }}
                             </span>
@@ -604,7 +604,8 @@ const showCreateProject = ref(false);
                                                     }
                                                 ">
                                                 <span
-                                                    >{{ projectWithTasks.tasks.length }} Tasks</span
+                                                    >{{ projectWithTasks.tasks.length }}
+                                                    {{ $t('dashboard.Tasks') }}</span
                                                 >
                                                 <ChevronDownIcon
                                                     :class="{
@@ -635,16 +636,16 @@ const showCreateProject = ref(false);
                         </template>
                     </template>
                 </div>
-                <div v-if="canCreateProject" class="hover:bg-card-background-active rounded-b-lg">
+                <div v-if="canCreateProject" class="rounded-b-lg hover:bg-card-background-active">
                     <button
-                        class="text-text-primary flex space-x-3 items-center px-4 py-3 text-xs font-semibold border-t border-card-background-separator"
+                        class="flex items-center px-4 py-3 space-x-3 text-xs font-semibold border-t text-text-primary border-card-background-separator"
                         @click="
                             open = false;
                             showCreateProject = true;
                         ">
                         <PlusCircleIcon
-                            class="w-5 flex-shrink-0 text-icon-default"></PlusCircleIcon>
-                        <span>Create new Project</span>
+                            class="flex-shrink-0 w-5 text-icon-default"></PlusCircleIcon>
+                        <span>{{ $t('dashboard.createProject') }}</span>
                     </button>
                 </div>
             </UseFocusTrap>

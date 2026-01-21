@@ -124,7 +124,7 @@ const showBillableRate = computed(() => {
 <template>
     <AppLayout title="Projects" data-testid="projects_view">
         <MainContainer
-            class="py-3 sm:pt-5 border-b border-default-background-separator flex justify-between items-center">
+            class="flex items-center justify-between py-3 border-b sm:pt-5 border-default-background-separator">
             <div class="flex items-center space-x-3 sm:space-x-6">
                 <PageTitle :icon="FolderIcon" title="Projects"></PageTitle>
             </div>
@@ -132,7 +132,7 @@ const showBillableRate = computed(() => {
                 v-if="canCreateProjects()"
                 :icon="PlusIcon"
                 @click="showCreateProjectModal = true"
-                >Create Project
+                >{{ $t('common.submit') }}
             </SecondaryButton>
             <ProjectCreateModal
                 v-model:show="showCreateProjectModal"

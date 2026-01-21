@@ -262,7 +262,7 @@ const tableData = computed(() => {
         v-model:show="showExportModal"
         :export-url="exportUrl"></ReportingExportModal>
     <MainContainer
-        class="py-3 sm:py-5 border-b border-default-background-separator flex justify-between items-center">
+        class="flex items-center justify-between py-3 border-b sm:py-5 border-default-background-separator">
         <div class="flex items-center space-x-3 sm:space-x-6">
             <PageTitle :icon="ChartBarIcon" title="Reporting"></PageTitle>
             <ReportingTabNavbar active="reporting"></ReportingTabNavbar>
@@ -273,15 +273,15 @@ const tableData = computed(() => {
         </div>
     </MainContainer>
     <div class="py-2.5 w-full border-b border-default-background-separator">
-        <MainContainer class="sm:flex space-y-4 sm:space-y-0 justify-between">
-            <div class="flex flex-wrap items-center space-y-2 sm:space-y-0 space-x-3">
-                <div class="text-sm font-medium">Filters</div>
+        <MainContainer class="justify-between space-y-4 sm:flex sm:space-y-0">
+            <div class="flex flex-wrap items-center space-x-3 space-y-2 sm:space-y-0">
+                <div class="text-sm font-medium">{{ $t('Filters.Filters') }}</div>
                 <MemberMultiselectDropdown v-model="selectedMembers" @submit="updateReporting">
                     <template #trigger>
                         <ReportingFilterBadge
                             :count="selectedMembers.length"
                             :active="selectedMembers.length > 0"
-                            title="Members"
+                            :title="$t('Filters.Members')"
                             :icon="UserGroupIcon"></ReportingFilterBadge>
                     </template>
                 </MemberMultiselectDropdown>
@@ -290,7 +290,7 @@ const tableData = computed(() => {
                         <ReportingFilterBadge
                             :count="selectedProjects.length"
                             :active="selectedProjects.length > 0"
-                            title="Projects"
+                            :title="$t('Filters.Projects')"
                             :icon="FolderIcon"></ReportingFilterBadge>
                     </template>
                 </ProjectMultiselectDropdown>
@@ -299,7 +299,7 @@ const tableData = computed(() => {
                         <ReportingFilterBadge
                             :count="selectedTasks.length"
                             :active="selectedTasks.length > 0"
-                            title="Tasks"
+                            :title="$t('Filters.Tasks')"
                             :icon="CheckCircleIcon"></ReportingFilterBadge>
                     </template>
                 </TaskMultiselectDropdown>
@@ -308,7 +308,7 @@ const tableData = computed(() => {
                         <ReportingFilterBadge
                             :count="selectedClients.length"
                             :active="selectedClients.length > 0"
-                            title="Clients"
+                            :title="$t('Filters.Clients')"
                             :icon="FolderIcon"></ReportingFilterBadge>
                     </template>
                 </ClientMultiselectDropdown>
@@ -321,7 +321,7 @@ const tableData = computed(() => {
                         <ReportingFilterBadge
                             :count="selectedTags.length"
                             :active="selectedTags.length > 0"
-                            title="Tags"
+                            :title="$t('Filters.Tags')"
                             :icon="TagIcon"></ReportingFilterBadge>
                     </template>
                 </TagDropdown>
@@ -332,15 +332,15 @@ const tableData = computed(() => {
                     :get-name-for-item="(item) => item.label"
                     :items="[
                         {
-                            label: 'Both',
+                            label: $t('Filters.Both'),
                             value: null,
                         },
                         {
-                            label: 'Billable',
+                            label: $t('Filters.Billable'),
                             value: 'true',
                         },
                         {
-                            label: 'Non Billable',
+                            label: $t('Filters.Non Billable'),
                             value: 'false',
                         },
                     ]"
@@ -348,7 +348,11 @@ const tableData = computed(() => {
                     <template #trigger>
                         <ReportingFilterBadge
                             :active="billable !== null"
-                            :title="billable === 'false' ? 'Non Billable' : 'Billable'"
+                            :title="
+                                billable === 'false'
+                                    ? $t('Filters.Non Billable')
+                                    : $t('Filters.Billable')
+                            "
                             :icon="BillableIcon"></ReportingFilterBadge>
                     </template>
                 </SelectDropdown>
@@ -367,23 +371,23 @@ const tableData = computed(() => {
         </MainContainer>
     </div>
     <MainContainer>
-        <div class="pt-10 w-full px-3 relative">
+        <div class="relative w-full px-3 pt-10">
             <ReportingChart
                 :grouped-type="aggregatedGraphTimeEntries?.grouped_type"
                 :grouped-data="aggregatedGraphTimeEntries?.grouped_data"></ReportingChart>
         </div>
     </MainContainer>
     <MainContainer>
-        <div class="sm:grid grid-cols-4 pt-6 items-start">
-            <div class="col-span-3 bg-card-background rounded-lg border border-card-border pt-3">
+        <div class="items-start grid-cols-4 pt-6 sm:grid">
+            <div class="col-span-3 pt-3 border rounded-lg bg-card-background border-card-border">
                 <div
-                    class="text-sm flex text-text-primary items-center space-x-3 font-medium px-6 border-b border-card-background-separator pb-3">
-                    <span>Group by</span>
+                    class="flex items-center px-6 pb-3 space-x-3 text-sm font-medium border-b text-text-primary border-card-background-separator">
+                    <span>{{ $t('Filters.Group by') }}</span>
                     <ReportingGroupBySelect
                         v-model="group"
                         :group-by-options="groupByOptions"
                         @changed="updateTableReporting"></ReportingGroupBySelect>
-                    <span>and</span>
+                    <span>{{ $t('Filters.and') }}</span>
                     <ReportingGroupBySelect
                         v-model="subGroup"
                         :group-by-options="groupByOptions.filter((el) => el.value !== group)"
@@ -392,9 +396,9 @@ const tableData = computed(() => {
                 <div class="grid items-center" style="grid-template-columns: 1fr 100px 150px">
                     <div
                         class="contents [&>*]:border-card-background-separator [&>*]:border-b [&>*]:bg-tertiary [&>*]:pb-1.5 [&>*]:pt-1 text-text-secondary text-sm">
-                        <div class="pl-6">Name</div>
-                        <div class="text-right">Duration</div>
-                        <div class="text-right pr-6">Cost</div>
+                        <div class="pl-6">{{ $t('Filters.Name') }}</div>
+                        <div class="text-right">{{ $t('Filters.Duration') }}</div>
+                        <div class="pr-6 text-right">{{ $t('Filters.Cost') }}</div>
                     </div>
                     <template
                         v-if="
@@ -409,9 +413,9 @@ const tableData = computed(() => {
                             :entry="entry"></ReportingRow>
                         <div class="contents [&>*]:transition text-text-tertiary [&>*]:h-[50px]">
                             <div class="flex items-center pl-6 font-medium">
-                                <span>Total</span>
+                                <span>{{ $t('Filters.Total') }}</span>
                             </div>
-                            <div class="justify-end flex items-center font-medium">
+                            <div class="flex items-center justify-end font-medium">
                                 {{
                                     formatHumanReadableDuration(
                                         aggregatedTableTimeEntries.seconds,
@@ -420,7 +424,7 @@ const tableData = computed(() => {
                                     )
                                 }}
                             </div>
-                            <div class="justify-end pr-6 flex items-center font-medium">
+                            <div class="flex items-center justify-end pr-6 font-medium">
                                 {{
                                     aggregatedTableTimeEntries.cost
                                         ? formatCents(
@@ -437,9 +441,11 @@ const tableData = computed(() => {
                     </template>
                     <div
                         v-else
-                        class="chart flex flex-col items-center justify-center py-12 col-span-3">
-                        <p class="text-lg text-text-primary font-medium">No time entries found</p>
-                        <p>Try to change the filters and time range</p>
+                        class="flex flex-col items-center justify-center col-span-3 py-12 chart">
+                        <p class="text-lg font-medium text-text-primary">
+                            {{ $t('Filters.No time entries found') }}
+                        </p>
+                        <p>{{ $t('Filters.Try to change the filters and time range') }}</p>
                     </div>
                 </div>
             </div>

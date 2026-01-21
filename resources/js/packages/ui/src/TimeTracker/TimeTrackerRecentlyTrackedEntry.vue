@@ -35,24 +35,24 @@ const task = computed(() => {
         <span v-if="timeEntry.description !== ''" class="text-sm font-medium">
             {{ timeEntry.description }}
         </span>
-        <span v-else class="text-sm text-text-tertiary font-medium"> No Description </span>
+        <span v-else class="text-sm font-medium text-text-tertiary"> No Description </span>
         <ProjectBadge
             ref="projectDropdownTrigger"
             :color="project?.color"
             :name="project?.name"
             class="">
-            <div v-if="project" class="flex items-center lg:space-x-1 min-w-0">
-                <span class="whitespace-nowrap text-xs">
+            <div v-if="project" class="flex items-center min-w-0 lg:space-x-1">
+                <span class="text-xs whitespace-nowrap">
                     {{ project?.name }}
                 </span>
                 <ChevronRightIcon
                     v-if="task"
                     class="w-4 lg:w-5 text-text-secondary shrink-0"></ChevronRightIcon>
-                <div v-if="task" class="min-w-0 shrink text-xs truncate">
+                <div v-if="task" class="min-w-0 text-xs truncate shrink">
                     {{ task.name }}
                 </div>
             </div>
-            <div v-else>No Project</div>
+            <div v-else>{{ $t('Time.No Project') }}</div>
         </ProjectBadge>
     </button>
 </template>

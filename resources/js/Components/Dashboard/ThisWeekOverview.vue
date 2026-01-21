@@ -237,14 +237,17 @@ const option = computed(() => {
 
 <template>
     <div
-        class="grid space-y-5 sm:space-y-0 sm:gap-x-6 xl:gap-x-6 grid-cols-1 lg:grid-cols-3 xl:grid-cols-4">
+        class="grid grid-cols-1 space-y-5 sm:space-y-0 sm:gap-x-6 xl:gap-x-6 lg:grid-cols-3 xl:grid-cols-4">
         <div class="col-span-2 xl:col-span-3">
-            <CardTitle title="This Week" class="pb-8" :icon="ClockIcon"></CardTitle>
+            <CardTitle
+                :title="$t('dashboard.This Week')"
+                class="pb-8"
+                :icon="ClockIcon"></CardTitle>
             <v-chart v-if="weeklyHistory" :autoresize="true" class="chart" :option="option" />
         </div>
         <div class="space-y-6">
             <StatCard
-                title="Spent Time"
+                :title="$t('dashboard.Spent Time')"
                 :value="
                     totalWeeklyTime
                         ? formatHumanReadableDuration(
@@ -255,7 +258,7 @@ const option = computed(() => {
                         : '--'
                 " />
             <StatCard
-                title="Billable Time"
+                :title="$t('dashboard.Billable Time')"
                 :value="
                     totalWeeklyBillableTime
                         ? formatHumanReadableDuration(
@@ -266,7 +269,7 @@ const option = computed(() => {
                         : '--'
                 " />
             <StatCard
-                title="Billable Amount"
+                :title="$t('dashboard.Billable Amount')"
                 :value="
                     totalWeeklyBillableAmount
                         ? formatCents(

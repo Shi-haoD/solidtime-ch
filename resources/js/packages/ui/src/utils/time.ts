@@ -53,8 +53,8 @@ export function getDayJsInstance() {
     });
     return dayjs;
 }
-
 export const firstDayIndex = computed(() => {
+  //因为$t无法使用 所以这里先不翻译
     const apiDayOrder = [
         'sunday',
         'monday',

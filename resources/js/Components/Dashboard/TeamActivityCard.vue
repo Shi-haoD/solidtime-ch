@@ -28,8 +28,8 @@ const { data: latestTeamActivity, isLoading } = useQuery({
 </script>
 
 <template>
-    <DashboardCard title="Team Activity" :icon="UserGroupIcon">
-        <div v-if="isLoading" class="flex justify-center items-center h-40">
+    <DashboardCard :title="$t('dashboard.Team Activity')" :icon="UserGroupIcon">
+        <div v-if="isLoading" class="flex items-center justify-center h-40">
             <LoadingSpinner />
         </div>
         <div v-else-if="latestTeamActivity">
@@ -41,16 +41,20 @@ const { data: latestTeamActivity, isLoading } = useQuery({
                 :description="activity.description"
                 :working="activity.status"></TeamActivityCardEntry>
         </div>
-        <div v-else class="text-center text-gray-500 py-8">No team activity found</div>
+        <div v-else class="py-8 text-center text-gray-500">
+            {{ $t('dashboard.No team activity found') }}
+        </div>
         <div
             v-if="latestTeamActivity && latestTeamActivity.length <= 1"
-            class="text-center flex flex-1 justify-center items-center">
+            class="flex items-center justify-center flex-1 text-center">
             <div>
-                <UserGroupIcon class="w-8 text-icon-default inline pb-2"></UserGroupIcon>
-                <h3 class="text-text-primary font-semibold text-sm">Invite your co-workers</h3>
-                <p class="pb-5 text-sm">You can invite your entire team.</p>
+                <UserGroupIcon class="inline w-8 pb-2 text-icon-default"></UserGroupIcon>
+                <h3 class="text-sm font-semibold text-text-primary">
+                    {{ $t('dashboard.Invite your co-workers') }}
+                </h3>
+                <p class="pb-5 text-sm">{{ $t('dashboard.You can invite your entire team') }}</p>
                 <SecondaryButton @click="router.visit(route('members'))"
-                    >Go to Members
+                    >{{ $t('dashboard.Go to Members') }}
                 </SecondaryButton>
             </div>
         </div>

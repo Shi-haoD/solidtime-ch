@@ -139,9 +139,9 @@ const option = computed(() => {
 </script>
 
 <template>
-    <DashboardCard title="Activity Graph" :icon="BoltIcon">
+    <DashboardCard :title="$t('dashboard.Activity Graph')" :icon="BoltIcon">
         <div class="px-2">
-            <div v-if="isLoading" class="flex justify-center items-center h-40">
+            <div v-if="isLoading" class="flex items-center justify-center h-40">
                 <LoadingSpinner />
             </div>
             <div v-else-if="dailyHoursTracked">
@@ -151,7 +151,9 @@ const option = computed(() => {
                     :option="option"
                     style="height: 260px; background-color: transparent" />
             </div>
-            <div v-else class="text-center text-gray-500 py-8">No activity data available</div>
+            <div v-else class="py-8 text-center text-gray-500">
+                {{ $t('dashboard.No activity data available') }}
+            </div>
         </div>
     </DashboardCard>
 </template>

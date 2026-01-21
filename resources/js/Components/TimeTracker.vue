@@ -151,8 +151,8 @@ async function discardCurrentTimeEntry() {
     if (currentTimeEntry.value.id) {
         await handleApiRequestNotifications(
             () => deleteTimeEntryMutation.mutateAsync(currentTimeEntry.value.id),
-            'Time entry discarded successfully',
-            'Failed to discard time entry'
+            $t('dashboard.Time entry discarded successfully'),
+            $t('dashboard.Failed to discard time entry')
         );
     }
 }
@@ -175,7 +175,7 @@ const { timeEntries } = storeToRefs(useTimeEntriesStore());
         :tasks
         :tags
         :clients></TimeEntryCreateModal>
-    <CardTitle title="Time Tracker" :icon="ClockIcon"></CardTitle>
+    <CardTitle :title="$t('dashboard.Time Tracker')" :icon="ClockIcon"></CardTitle>
     <div class="relative">
         <TimeTrackerRunningInDifferentOrganizationOverlay
             v-if="isRunningInDifferentOrganization"
@@ -183,8 +183,8 @@ const { timeEntries } = storeToRefs(useTimeEntriesStore());
                 switchToTimeEntryOrganization
             "></TimeTrackerRunningInDifferentOrganizationOverlay>
 
-        <div class="flex w-full items-center gap-2">
-            <div class="flex w-full items-center gap-2">
+        <div class="flex items-center w-full gap-2">
+            <div class="flex items-center w-full gap-2">
                 <div class="flex-1">
                     <TimeTrackerControls
                         v-model:current-time-entry="currentTimeEntry"

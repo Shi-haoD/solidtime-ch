@@ -135,26 +135,28 @@ const gridTemplate = computed(() => {
                     :sort-direction="props.sortDirection"
                     @sort="handleSort"></ProjectTableHeading>
                 <div v-if="sortedProjects.length === 0" class="col-span-5 py-24 text-center">
-                    <FolderPlusIcon class="w-8 text-icon-default inline pb-2"></FolderPlusIcon>
-                    <h3 class="text-text-primary font-semibold">
+                    <FolderPlusIcon class="inline w-8 pb-2 text-icon-default"></FolderPlusIcon>
+                    <h3 class="font-semibold text-text-primary">
                         {{
                             canCreateProjects()
-                                ? 'No projects found'
-                                : 'You are not a member of any projects'
+                                ? $t('Time.No projects found')
+                                : $t('You are not a member of any projects')
                         }}
                     </h3>
-                    <p class="pb-5 max-w-md mx-auto text-sm pt-1">
+                    <p class="max-w-md pt-1 pb-5 mx-auto text-sm">
                         {{
                             canCreateProjects()
-                                ? 'Create your first project now!'
-                                : 'Ask your manager to add you to a project as a team member.'
+                                ? $t('Time.Create your first project now!')
+                                : $t(
+                                      'Time.Ask your manager to add you to a project as a team member'
+                                  )
                         }}
                     </p>
                     <SecondaryButton
                         v-if="canCreateProjects()"
                         :icon="PlusIcon"
                         @click="showCreateProjectModal = true"
-                        >Create your First Project
+                        >{{ $t('Time.Create your First Project') }}
                     </SecondaryButton>
                 </div>
                 <template v-for="project in sortedProjects" :key="project.id">

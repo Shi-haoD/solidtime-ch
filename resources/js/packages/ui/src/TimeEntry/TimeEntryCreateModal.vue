@@ -140,26 +140,26 @@ type BillableOption = {
     <DialogModal closeable :show="show" @close="show = false">
         <template #title>
             <div class="flex space-x-2">
-                <span> Create manual time entry </span>
+                <span>{{ $t('dashboard.Create manual time entry') }}</span>
             </div>
         </template>
 
         <template #content>
-            <div class="sm:flex items-end space-y-2 sm:space-y-0 sm:space-x-4">
+            <div class="items-end space-y-2 sm:flex sm:space-y-0 sm:space-x-4">
                 <div class="flex-1">
                     <TextInput
                         id="description"
                         ref="description"
                         v-model="timeEntry.description"
                         aria-label="Description"
-                        placeholder="What did you work on?"
+                        :placeholder="$t('dashboard.What did you work on')"
                         type="text"
-                        class="mt-1 block w-full"
+                        class="block w-full mt-1"
                         @keydown.enter="submit" />
                 </div>
             </div>
-            <div class="sm:flex justify-between items-end space-y-2 sm:space-y-0 pt-4 sm:space-x-4">
-                <div class="flex w-full items-center space-x-2 justify-between">
+            <div class="items-end justify-between pt-4 space-y-2 sm:flex sm:space-y-0 sm:space-x-4">
+                <div class="flex items-center justify-between w-full space-x-2">
                     <div class="flex-1 min-w-0">
                         <TimeTrackerProjectTaskDropdown
                             v-model:project="timeEntry.project_id"
@@ -187,10 +187,10 @@ type BillableOption = {
                                             class="w-4"></TagIcon>
                                         <div
                                             v-else
-                                            class="bg-accent-300/20 w-5 h-5 font-medium rounded flex items-center transition justify-center">
+                                            class="flex items-center justify-center w-5 h-5 font-medium transition rounded bg-accent-300/20">
                                             {{ timeEntry.tags.length }}
                                         </div>
-                                        <span>Tags</span>
+                                        <span>{{ $t('Time.Tags') }}</span>
                                     </Badge>
                                 </template>
                             </TagDropdown>
@@ -214,7 +214,9 @@ type BillableOption = {
                                     <Badge class="bg-input-background" tag="button" size="xlarge">
                                         <BillableIcon class="h-4"></BillableIcon>
                                         <span>{{
-                                            timeEntry.billable ? 'Billable' : 'Non-Billable'
+                                            timeEntry.billable
+                                                ? $t('Time.Billable')
+                                                : $t('Time.Non-Billable')
                                         }}</span>
                                     </Badge>
                                 </template>
@@ -225,25 +227,25 @@ type BillableOption = {
             </div>
             <div class="flex pt-4 space-x-4">
                 <div class="flex-1">
-                    <InputLabel>Duration</InputLabel>
-                    <div class="space-y-2 mt-1 flex flex-col">
+                    <InputLabel>{{ $t('Time.Duration') }}</InputLabel>
+                    <div class="flex flex-col mt-1 space-y-2">
                         <DurationHumanInput
                             v-model:start="localStart"
                             v-model:end="localEnd"
                             name="Duration"></DurationHumanInput>
-                        <div class="text-sm flex space-x-1">
+                        <div class="flex space-x-1 text-sm">
                             <InformationCircleIcon
                                 class="w-4 text-text-quaternary"></InformationCircleIcon>
-                            <span class="text-text-secondary text-xs">
-                                You can type natural language here f.e.
+                            <span class="text-xs text-text-secondary">
+                                {{ $t('dashboard.You can type natural language') }}
                                 <span class="font-semibold"> 2h 30m</span>
                             </span>
                         </div>
                     </div>
                 </div>
                 <div class="">
-                    <InputLabel>Start</InputLabel>
-                    <div class="flex flex-col items-center space-y-2 mt-1">
+                    <InputLabel>{{ $t('Time.Start') }}</InputLabel>
+                    <div class="flex flex-col items-center mt-1 space-y-2">
                         <TimePickerSimple v-model="localStart" size="large"></TimePickerSimple>
                         <DatePicker
                             v-model="localStart"
@@ -252,8 +254,8 @@ type BillableOption = {
                     </div>
                 </div>
                 <div class="">
-                    <InputLabel>End</InputLabel>
-                    <div class="flex flex-col items-center space-y-2 mt-1">
+                    <InputLabel>{{ $t('Time.End') }}</InputLabel>
+                    <div class="flex flex-col items-center mt-1 space-y-2">
                         <TimePickerSimple v-model="localEnd" size="large"></TimePickerSimple>
                         <DatePicker
                             v-model="localEnd"
@@ -264,7 +266,9 @@ type BillableOption = {
             </div>
         </template>
         <template #footer>
-            <SecondaryButton tabindex="2" @click="show = false"> Cancel</SecondaryButton>
+            <SecondaryButton tabindex="2" @click="show = false">{{
+                $t('Time.Cancel')
+            }}</SecondaryButton>
             <PrimaryButton
                 tabindex="2"
                 class="ms-3"

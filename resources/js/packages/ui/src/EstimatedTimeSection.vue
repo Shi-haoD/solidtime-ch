@@ -9,9 +9,9 @@ const emit = defineEmits(['submit']);
 
 <template>
     <div class="pt-6">
-        <div class="flex items-center space-x-1 mb-2">
-            <ClockIcon class="text-text-quaternary w-4"></ClockIcon>
-            <InputLabel for="billable" value="Time Estimated" />
+        <div class="flex items-center mb-2 space-x-1">
+            <ClockIcon class="w-4 text-text-quaternary"></ClockIcon>
+            <InputLabel for="billable" :value="$t('dashboard.Time Estimated')" />
         </div>
         <DurationInput
             v-model="model"

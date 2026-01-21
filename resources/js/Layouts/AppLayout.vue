@@ -112,7 +112,7 @@ const page = usePage<{
             }"
             class="flex-shrink-0 h-screen hidden fixed w-[230px] 2xl:w-[250px] px-2.5 2xl:px-3 py-4 lg:flex flex-col justify-between">
             <div class="flex flex-col h-full">
-                <div class="border-b border-default-background-separator pb-2 flex justify-between">
+                <div class="flex justify-between pb-2 border-b border-default-background-separator">
                     <OrganizationSwitcher class="w-full"></OrganizationSwitcher>
                     <XMarkIcon class="w-8 lg:hidden" @click="showSidebarMenu = false"></XMarkIcon>
                 </div>
@@ -120,7 +120,7 @@ const page = usePage<{
                     <CurrentSidebarTimer></CurrentSidebarTimer>
                 </div>
                 <div
-                    class="overflow-y-scroll flex-1 w-full"
+                    class="flex-1 w-full overflow-y-scroll"
                     style="
                         scrollbar-width: thin;
                         scrollbar-color: var(--color-bg-primary) transparent;
@@ -128,36 +128,36 @@ const page = usePage<{
                     <nav class="pt-2">
                         <ul>
                             <NavigationSidebarItem
-                                title="Dashboard"
+                                :title="$t('NavigationSidebarItem.dashboard')"
                                 :icon="HomeIcon"
                                 :href="route('dashboard')"
                                 :current="route().current('dashboard')"></NavigationSidebarItem>
                             <NavigationSidebarItem
-                                title="Time"
+                                :title="$t('NavigationSidebarItem.Time')"
                                 :icon="ClockIcon"
                                 :current="route().current('time')"
                                 :href="route('time')"></NavigationSidebarItem>
                             <NavigationSidebarItem
-                                title="Calendar"
+                                :title="$t('NavigationSidebarItem.Calendar')"
                                 :icon="CalendarIcon"
                                 :current="route().current('calendar')"
                                 :href="route('calendar')"></NavigationSidebarItem>
                             <NavigationSidebarItem
-                                title="Reporting"
+                                :title="$t('NavigationSidebarItem.Reporting')"
                                 :icon="ChartBarIcon"
                                 :sub-items="[
                                     {
-                                        title: 'Overview',
+                                        title: $t('NavigationSidebarItem.Overview'),
                                         route: 'reporting',
                                         show: true,
                                     },
                                     {
-                                        title: 'Detailed',
+                                        title: $t('NavigationSidebarItem.Detailed'),
                                         route: 'reporting.detailed',
                                         show: true,
                                     },
                                     {
-                                        title: 'Shared',
+                                        title: $t('NavigationSidebarItem.Shared'),
                                         route: 'reporting.shared',
                                         show: canViewReport(),
                                     },
@@ -172,37 +172,39 @@ const page = usePage<{
                         </ul>
                     </nav>
 
-                    <div class="text-text-tertiary text-xs font-semibold pt-5 pb-1.5">Manage</div>
+                    <div class="text-text-tertiary text-xs font-semibold pt-5 pb-1.5">
+                        {{ $t('NavigationSidebarItem.Manage') }}
+                    </div>
 
                     <nav>
                         <ul>
                             <NavigationSidebarItem
                                 v-if="canViewProjects()"
-                                title="Projects"
+                                :title="$t('NavigationSidebarItem.Projects')"
                                 :icon="FolderIcon"
                                 :href="route('projects')"
                                 :current="route().current('projects')"></NavigationSidebarItem>
                             <NavigationSidebarItem
                                 v-if="canViewClients()"
-                                title="Clients"
+                                :title="$t('NavigationSidebarItem.Clients')"
                                 :icon="UserCircleIcon"
                                 :current="route().current('clients')"
                                 :href="route('clients')"></NavigationSidebarItem>
                             <NavigationSidebarItem
                                 v-if="canViewMembers()"
-                                title="Members"
+                                :title="$t('NavigationSidebarItem.Members')"
                                 :icon="UserGroupIcon"
                                 :current="route().current('members')"
                                 :href="route('members')"></NavigationSidebarItem>
                             <NavigationSidebarItem
                                 v-if="canViewTags()"
-                                title="Tags"
+                                :title="$t('NavigationSidebarItem.Tags')"
                                 :icon="TagIcon"
                                 :current="route().current('tags')"
                                 :href="route('tags')"></NavigationSidebarItem>
                             <NavigationSidebarItem
                                 v-if="isInvoicingActivated() && canViewInvoices()"
-                                title="Invoices"
+                                :title="$t('NavigationSidebarItem.Invoices')"
                                 :icon="DocumentTextIcon"
                                 :current="route().current('invoices')"
                                 href="/invoices"></NavigationSidebarItem>
@@ -211,25 +213,25 @@ const page = usePage<{
                     <div
                         v-if="canUpdateOrganization()"
                         class="text-text-tertiary text-xs font-semibold pt-5 pb-1.5">
-                        Admin
+                        {{ $t('NavigationSidebarItem.Administration') }}
                     </div>
 
                     <nav>
                         <ul>
                             <NavigationSidebarItem
                                 v-if="canManageBilling() && isBillingActivated()"
-                                title="Billing"
+                                :title="$t('NavigationSidebarItem.Billing')"
                                 :icon="CreditCardIcon"
                                 href="/billing"></NavigationSidebarItem>
                             <NavigationSidebarItem
                                 v-if="canUpdateOrganization()"
-                                title="Import / Export"
+                                :title="$t('NavigationSidebarItem.ImportExport')"
                                 :icon="ArrowsRightLeftIcon"
                                 :current="route().current('import')"
                                 :href="route('import')"></NavigationSidebarItem>
                             <NavigationSidebarItem
                                 v-if="canUpdateOrganization()"
-                                title="Settings"
+                                :title="$t('NavigationSidebarItem.Settings')"
                                 :icon="Cog6ToothIcon"
                                 :href="route('teams.show', page.props.auth.user.current_team.id)"
                                 :current="
@@ -244,7 +246,7 @@ const page = usePage<{
                 <div class="justify-self-end">
                     <UpdateSidebarNotification></UpdateSidebarNotification>
                     <ul
-                        class="border-t border-default-background-separator pt-3 gap-1 pr-2 flex justify-between items-center">
+                        class="flex items-center justify-between gap-1 pt-3 pr-2 border-t border-default-background-separator">
                         <UserSettingsIcon></UserSettingsIcon>
 
                         <NavigationSidebarItem
@@ -257,7 +259,7 @@ const page = usePage<{
                             v-if="page.props.has_services_extension"
                             variant="outline"
                             size="xs"
-                            class="rounded-full ml-2 flex h-6 w-6 items-center text-xs text-icon-default justify-center"
+                            class="flex items-center justify-center w-6 h-6 ml-2 text-xs rounded-full text-icon-default"
                             @click="openFeedback">
                             ?
                         </Button>
@@ -267,9 +269,9 @@ const page = usePage<{
         </div>
         <div class="flex-1 lg:ml-[230px] 2xl:ml-[250px] min-w-0">
             <div
-                class="h-screen overflow-y-auto flex flex-col bg-default-background border-l border-default-background-separator">
+                class="flex flex-col h-screen overflow-y-auto border-l bg-default-background border-default-background-separator">
                 <div
-                    class="lg:hidden w-full px-3 py-1 border-b border-b-default-background-separator text-text-secondary flex justify-between items-center">
+                    class="flex items-center justify-between w-full px-3 py-1 border-b lg:hidden border-b-default-background-separator text-text-secondary">
                     <Bars3Icon
                         class="w-7 text-text-secondary"
                         @click="showSidebarMenu = !showSidebarMenu"></Bars3Icon>
@@ -284,7 +286,7 @@ const page = usePage<{
 
                 <header
                     v-if="$slots.header"
-                    class="bg-default-background border-b border-default-background-separator shadow">
+                    class="border-b shadow bg-default-background border-default-background-separator">
                     <div class="pt-8 pb-3">
                         <MainContainer>
                             <slot name="header" />

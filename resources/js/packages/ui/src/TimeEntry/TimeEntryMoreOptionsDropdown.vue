@@ -29,10 +29,10 @@ const emit = defineEmits<{
     <DropdownMenu>
         <DropdownMenuTrigger as-child>
             <button
-                class="focus-visible:outline-none focus-visible:bg-card-background rounded-full focus-visible:ring-2 focus-visible:ring-ring focus-visible:opacity-100 hover:bg-card-background group-hover:opacity-100 opacity-20 transition-opacity text-text-secondary"
+                class="transition-opacity rounded-full focus-visible:outline-none focus-visible:bg-card-background focus-visible:ring-2 focus-visible:ring-ring focus-visible:opacity-100 hover:bg-card-background group-hover:opacity-100 opacity-20 text-text-secondary"
                 aria-label="Actions for the time entry">
                 <svg
-                    class="h-8 w-8 p-1 rounded-full"
+                    class="w-8 h-8 p-1 rounded-full"
                     viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -52,7 +52,7 @@ const emit = defineEmits<{
                 class="flex items-center space-x-3 cursor-pointer"
                 @click="emit('edit')">
                 <PencilIcon class="w-5" />
-                <span>Edit</span>
+                <span>{{ $t('Time.Edit') }}</span>
             </DropdownMenuItem>
             <DropdownMenuItem
                 v-if="props.showDuplicate"
@@ -60,14 +60,14 @@ const emit = defineEmits<{
                 class="flex items-center space-x-3 cursor-pointer"
                 @click="emit('duplicate')">
                 <DocumentDuplicateIcon class="w-5" />
-                <span>Duplicate</span>
+                <span>{{ $t('Time.Duplicate') }}</span>
             </DropdownMenuItem>
             <DropdownMenuItem
                 data-testid="time_entry_delete"
                 class="flex items-center space-x-3 cursor-pointer text-destructive focus:text-destructive"
                 @click="emit('delete')">
                 <TrashIcon class="w-5" />
-                <span>Delete</span>
+                <span>{{ $t('Time.Delete') }}</span>
             </DropdownMenuItem>
         </DropdownMenuContent>
     </DropdownMenu>

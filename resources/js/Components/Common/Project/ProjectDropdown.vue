@@ -137,7 +137,7 @@ function updateValue(project: Project) {
                     <ComboboxContent>
                         <ComboboxViewport
                             ref="dropdownViewport"
-                            class="w-60 max-h-60 overflow-y-scroll">
+                            class="overflow-y-scroll w-60 max-h-60">
                             <ComboboxItem
                                 v-for="project in shownProjects"
                                 :key="project.id"
@@ -153,8 +153,8 @@ function updateValue(project: Project) {
                                 v-if="searchValue.length > 0 && shownProjects.length === 0"
                                 class="bg-card-background-active">
                                 <div
-                                    class="flex space-x-3 items-center px-4 py-3 text-xs font-medium border-t rounded-b-lg border-card-background-separator">
-                                    <PlusCircleIcon class="w-5 flex-shrink-0"></PlusCircleIcon>
+                                    class="flex items-center px-4 py-3 space-x-3 text-xs font-medium border-t rounded-b-lg border-card-background-separator">
+                                    <PlusCircleIcon class="flex-shrink-0 w-5"></PlusCircleIcon>
                                     <span>Add "{{ searchValue }}" as a new Project</span>
                                 </div>
                             </div>

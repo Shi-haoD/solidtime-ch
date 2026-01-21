@@ -70,7 +70,7 @@ const shownTasks = computed(() => {
 <template>
     <AppLayout title="Projects" data-testid="projects_view">
         <MainContainer
-            class="py-5 border-b border-default-background-separator flex justify-between items-center">
+            class="flex items-center justify-between py-5 border-b border-default-background-separator">
             <nav class="flex" aria-label="Breadcrumb">
                 <ol role="list" class="flex items-center space-x-2">
                     <li>
@@ -83,11 +83,11 @@ const shownTasks = computed(() => {
                     </li>
                     <li>
                         <div
-                            class="flex items-center space-x-3 text-text-primary font-semibold text-base">
+                            class="flex items-center space-x-3 text-base font-semibold text-text-primary">
                             <ChevronRightIcon
-                                class="h-5 w-5 flex-shrink-0 text-text-secondary"
+                                class="flex-shrink-0 w-5 h-5 text-text-secondary"
                                 aria-hidden="true" />
-                            <div class="flex space-x-3 items-center">
+                            <div class="flex items-center space-x-3">
                                 <div
                                     :style="{
                                         backgroundColor: project?.color,
@@ -115,7 +115,7 @@ const shownTasks = computed(() => {
                     <Badge v-if="project?.is_billable && !project?.billable_rate">
                         Default Rate
                     </Badge>
-                    <Badge v-if="!project?.is_billable"> Non-Billable </Badge>
+                    <Badge v-if="!project?.is_billable">{{ $t('Time.Non Billable') }}</Badge>
                 </div>
             </nav>
             <div>
@@ -123,7 +123,7 @@ const shownTasks = computed(() => {
                     v-if="canCreateProjects()"
                     :icon="PencilSquareIcon"
                     @click="showEditProjectModal = true">
-                    Edit Project
+                    {{ $t('Time.Edit Project') }}
                 </SecondaryButton>
                 <ProjectEditModal
                     v-if="project"
@@ -132,11 +132,11 @@ const shownTasks = computed(() => {
             </div>
         </MainContainer>
         <MainContainer>
-            <div class="grid lg:grid-cols-2 gap-x-6 pt-6">
+            <div class="grid pt-6 lg:grid-cols-2 gap-x-6">
                 <div>
                     <CardTitle title="Tasks" :icon="CheckCircleIcon">
                         <template #actions>
-                            <div class="w-full items-center flex justify-between">
+                            <div class="flex items-center justify-between w-full">
                                 <div class="pl-6">
                                     <TabBar v-model="activeTab">
                                         <TabBarItem value="active">Active </TabBarItem>

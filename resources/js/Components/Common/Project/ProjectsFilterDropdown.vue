@@ -79,14 +79,14 @@ const hasActiveFilters = computed(() => {
             <Button variant="ghost" size="xs" aria-label="Filter projects">
                 <ListFilterIcon
                     :class="[hasActiveFilters ? '' : '-ml-0.5', 'h-4 w-4 text-icon-default']" />
-                <span v-if="!hasActiveFilters" class="text-nowrap">Filter</span>
+                <span v-if="!hasActiveFilters" class="text-nowrap">{{ $t('Filters.Filter') }}</span>
             </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="start" class="w-56">
             <!-- Status Filter -->
             <DropdownMenuSub>
                 <DropdownMenuSubTrigger class="gap-2">
-                    <CheckCircleIcon class="h-4 w-4 text-icon-default" />
+                    <CheckCircleIcon class="w-4 h-4 text-icon-default" />
                     <span>Status</span>
                 </DropdownMenuSubTrigger>
                 <DropdownMenuSubContent>
@@ -105,7 +105,7 @@ const hasActiveFilters = computed(() => {
             <!-- Client Filter -->
             <DropdownMenuSub v-if="clients.length > 0">
                 <DropdownMenuSubTrigger class="gap-2">
-                    <UserGroupIcon class="h-4 w-4 text-icon-default" />
+                    <UserGroupIcon class="w-4 h-4 text-icon-default" />
                     <span>Client</span>
                 </DropdownMenuSubTrigger>
                 <DropdownMenuSubContent class="max-h-[300px] overflow-y-auto">

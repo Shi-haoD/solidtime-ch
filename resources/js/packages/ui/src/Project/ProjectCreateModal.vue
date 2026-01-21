@@ -69,36 +69,36 @@ const currentClientName = computed(() => {
     <DialogModal closeable :show="show" @close="show = false">
         <template #title>
             <div class="flex space-x-2">
-                <span> Create Project </span>
+                <span>{{ $t('dashboard.submit') }}</span>
             </div>
         </template>
 
         <template #content>
-            <div class="sm:flex items-center space-y-2 sm:space-y-0 sm:space-x-4">
-                <div class="flex-1 flex items-center">
-                    <div class="text-center pr-5">
-                        <InputLabel for="color" value="Color" />
+            <div class="items-center space-y-2 sm:flex sm:space-y-0 sm:space-x-4">
+                <div class="flex items-center flex-1">
+                    <div class="pr-5 text-center">
+                        <InputLabel for="color" :value="$t('dashboard.Color')" />
                         <ProjectColorSelector
                             v-model="project.color"
                             class="mt-2.5"></ProjectColorSelector>
                     </div>
                     <div class="w-full">
-                        <InputLabel for="projectName" value="Project name" />
+                        <InputLabel for="projectName" :value="$t('dashboard.Project name')" />
                         <TextInput
                             id="projectName"
                             ref="projectNameInput"
                             v-model="project.name"
                             name="projectName"
                             type="text"
-                            placeholder="The next big thing"
-                            class="mt-2 block w-full"
+                            :placeholder="$t('dashboard.The next big thing')"
+                            class="block w-full mt-2"
                             required
                             autocomplete="projectName"
                             @keydown.enter="submit()" />
                     </div>
                 </div>
                 <div>
-                    <InputLabel for="client" value="Client" />
+                    <InputLabel for="client" :value="$t('dashboard.Client')" />
                     <ClientDropdown
                         v-model="project.client_id"
                         :create-client="createClient"
@@ -107,7 +107,7 @@ const currentClientName = computed(() => {
                         <template #trigger>
                             <Badge
                                 tag="button"
-                                class="bg-input-background cursor-pointer hover:bg-tertiary"
+                                class="cursor-pointer bg-input-background hover:bg-tertiary"
                                 size="xlarge">
                                 <div class="flex items-center space-x-2">
                                     <UserCircleIcon class="w-5 text-icon-default"></UserCircleIcon>
@@ -136,13 +136,13 @@ const currentClientName = computed(() => {
             </div>
         </template>
         <template #footer>
-            <SecondaryButton @click="show = false"> Cancel</SecondaryButton>
+            <SecondaryButton @click="show = false">{{ $t('dashboard.cancel') }}</SecondaryButton>
             <PrimaryButton
                 class="ms-3"
                 :class="{ 'opacity-25': saving }"
                 :disabled="saving"
                 @click="submit">
-                Create Project
+                {{ $t('dashboard.submit') }}
             </PrimaryButton>
         </template>
     </DialogModal>

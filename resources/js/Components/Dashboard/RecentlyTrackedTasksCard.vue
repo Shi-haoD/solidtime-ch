@@ -72,8 +72,8 @@ window.addEventListener('dashboard:refresh', () => {
 </script>
 
 <template>
-    <DashboardCard title="Recent Time Entries" :icon="CheckCircleIcon">
-        <div v-if="isLoading" class="flex justify-center items-center h-40">
+    <DashboardCard :title="$t('dashboard.Recent Time Entries')" :icon="CheckCircleIcon">
+        <div v-if="isLoading" class="flex items-center justify-center h-40">
             <LoadingSpinner />
         </div>
         <div v-else-if="filteredLatestTasks && filteredLatestTasks.length > 0">
@@ -85,11 +85,13 @@ window.addEventListener('dashboard:refresh', () => {
                     filteredLatestTasks.length === 4 ? 'last:border-0' : ''
                 "></RecentlyTrackedTasksCardEntry>
         </div>
-        <div v-else class="text-center flex flex-1 justify-center items-center">
+        <div v-else class="flex items-center justify-center flex-1 text-center">
             <div>
-                <PlusCircleIcon class="w-8 text-icon-default inline pb-2"></PlusCircleIcon>
-                <h3 class="text-text-primary font-semibold text-sm">No recent time entries</h3>
-                <p class="pb-5 text-sm">Start tracking your time!</p>
+                <PlusCircleIcon class="inline w-8 pb-2 text-icon-default"></PlusCircleIcon>
+                <h3 class="text-sm font-semibold text-text-primary">
+                    {{ $t('dashboard.No recent time entries') }}
+                </h3>
+                <p class="pb-5 text-sm">{{ $t('dashboard.Start tracking your time!') }}</p>
             </div>
         </div>
     </DashboardCard>
